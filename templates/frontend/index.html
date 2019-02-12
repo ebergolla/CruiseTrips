@@ -1,0 +1,238 @@
+{% extends 'frontend/menu.html' %}
+{% load staticfiles %}
+{% load filters_tag %}
+
+{% block title %}
+    <title>Red Hot Cruises - Make your cruise dream a reality!</title>
+{% endblock %}
+
+{% block meta %}
+
+{% endblock %}
+
+{% block content %}
+    <div class="main-section">
+        <div id="main-carousel">
+            {% main_banner %}
+        </div>
+        <div class="hidden-sm hidden-xs">
+            {% filters %}
+        </div>
+        <div class="banner-text">
+            <h1 class="title">Red Hot Cruises - Make your cruise dream a reality!</h1>
+
+            <div class="description">
+                <p>
+                    Welcome to Red Hot Cruises, where you can find one the largest selections of unforgettable cruises
+                    to thousands of destinations worldwide. Whether you’re looking for a relaxing luxury cruise, an
+                    adventurous river cruise, a spectacular premium cruise, or an exciting party cruise, we have them
+                    all!
+                    <br/>
+                    Set sail for your next vacation with some of the industry's top <a style="color: #fff"
+                        href='/cruiselines/'><i>cruise lines</i></a> like Disney Cruise Line, Norwegian
+                    Cruise Line, Carnival Cruise Lines and Royal Caribbean International. Tour across some of the
+                    world’s most beautiful rivers aboard Avalon Waterways, Viking Cruises, AMA Waterways and Uniworld
+                    Boutique River Cruise Collection.
+                    <br/>
+                    Cruise to some of the world’s most beloved travel <a style="color: #fff"
+                                                                         href='/cruise-destinations/'><i>destinations</i></a>
+                    including Alaska, the Caribbean, European Rivers, the Mediterranean and Mexico. While visiting your
+                    destination, embark on a wide variety of shore excursions including scuba diving, parasailing,
+                    fishing, land tours and more!
+                    <br/>
+                    At Red Hot Cruises, we keep you updated with the latest <a style="color: #fff" href='/cruise-deals/'><i>cruise
+                    deals</i></a>
+                    available exclusively through the individual cruise lines. Additionally, we have a limited supply of
+                    cruise/vacation packages available featuring discounted air and hotel accommodations. We really are
+                    “Your Cruise Vacation Specialists”!
+                </p>
+
+            </div>
+        </div>
+        <div class="filters-widget hidden-lg hidden-md">
+            <div class="row">
+                <div class="col-xs-1 col-sm-3"></div>
+                <div class="col-xs-10 col-sm-6">
+                    {% filters%}
+                </div>
+                <div class="col-xs-1 col-sm-3"></div>
+            </div>
+        </div>
+    </div>
+    <div class="cruise-deals">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="section-title text-center">
+                        <h2 class="fancy-title gray-title"><img src="{% static "Lgraywave.png" %}">Latest Cruise Deals<img
+                                src="{% static "Rgraywave.png" %}"></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                {% if deals|length == 0 %}
+                    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 cline-wrapper">
+
+                        <div class="cruise-line box-equalized">
+                            <div class="logo"><img src="{% static "logo-1.png" %}" class="responsive-image">
+                            </div>
+                            <div class="header-line">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                            <div class="short-description">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod neque ac lacus.
+                                Cras nisl. Nam faucibus convallis nulla. Pellentesque euismod volutpat ante. Integer
+                                ligula ligula.
+                            </div>
+                            <div class="expire-date">Offer expire: July 20th, 2015.</div>
+                            <div class="view-details"><a href="" role="button"
+                                                         class="btn btn-primary btn-block btn-lg site-btn blue-btn hover-transition">view
+                                details</a></div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 cline-wrapper">
+                        <div class="cruise-line box-equalized">
+                            <div class="logo"><a href=""><img src="{% static "logo-2.png" %}" class="responsive-image"></a>
+                            </div>
+                            <div class="header-line">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                            <div class="short-description">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod neque ac lacus.
+                                Cras nisl. Nam faucibus convallis nulla. Pellentesque euismod volutpat ante. Integer
+                                ligula ligula.
+                            </div>
+                            <div class="expire-date">Offer expire: July 20th, 2015.</div>
+                            <div class="view-details"><a href="" role="button"
+                                                         class="btn btn-primary btn-block btn-lg site-btn blue-btn hover-transition">view
+                                details</a></div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 cline-wrapper">
+                        <div class="cruise-line box-equalized">
+                            <div class="logo"><a href=""><img src="{% static "logo-3.png" %}" class="responsive-image"></a>
+                            </div>
+                            <div class="header-line">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                            <div class="short-description">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod neque ac lacus.
+                                Cras nisl. Nam faucibus convallis nulla. Pellentesque euismod volutpat ante. Integer
+                                ligula ligula.
+                            </div>
+                            <div class="expire-date">Offer expire: July 20th, 2015.</div>
+                            <div class="view-details"><a href="" role="button"
+                                                         class="btn btn-primary btn-block btn-lg site-btn blue-btn hover-transition">view
+                                details</a></div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 cline-wrapper">
+                        <div class="cruise-line box-equalized">
+                            <div class="logo"><a href=""><img src="{% static "logo-4.png" %}" class="responsive-image"></a>
+                            </div>
+                            <div class="header-line">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                            <div class="short-description">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod neque ac lacus.
+                                Cras nisl. Nam faucibus convallis nulla. Pellentesque euismod volutpat ante. Integer
+                                ligula ligula.
+                            </div>
+                            <div class="expire-date">Offer expire: July 20th, 2015.</div>
+                            <div class="view-details"><a href="" role="button"
+                                                         class="btn btn-primary btn-block btn-lg site-btn blue-btn hover-transition">view
+                                details</a></div>
+                        </div>
+                    </div>
+                {% else %}
+                    {% for deal in deals %}
+                        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 cline-wrapper">
+                            <div class="cruise-line box-equalized">
+                                <div class="logo">
+                                    <img src="{{ base_image_url }}{{ deal.cruise_line.logo }}" class="responsive-image">
+                                </div>
+                                <div class="header-line">{{ deal.title }}</div>
+                                <div class="short-description">
+                                    {{ deal.description|safe }}
+                                </div>
+                                <div class="expire-date">Offer expire: {{ deal.expire_date|date:"M dS, Y" }}</div>
+                                <div class="view-details">
+                                    <a href="/cruise-deals/" role="button"
+                                       class="btn btn-primary btn-block btn-lg site-btn blue-btn hover-transition">
+                                        view details
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+    <div class="top-destinations">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="section-title text-center">
+                        <h2 class="fancy-title dark-title"><img src="{% static "Lbluewave.png" %}">Top Destinations<img
+                                src="{% static "Rbluewave.png" %}"></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {% if top_dest|length == 0 %}
+                    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 dest-wrapper">
+                        <div class="destination"><a href=""><img src="{% static "dest-1.jpg" %}"
+                                                                 class="responsive-image">
+
+                            <div class="destination-name">Galapagos Islands</div>
+                        </a></div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 dest-wrapper">
+                        <div class="destination"><a href=""><img src="{% static "dest-2.jpg" %}"
+                                                                 class="responsive-image">
+
+                            <div class="destination-name">U.S.A West Coast</div>
+                        </a></div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 dest-wrapper">
+                        <div class="destination"><a href=""><img src="{% static "dest-3.jpg" %}"
+                                                                 class="responsive-image">
+
+                            <div class="destination-name">Bahamas</div>
+                        </a></div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 dest-wrapper">
+                        <div class="destination"><a href=""><img src="{% static "dest-4.jpg" %}"
+                                                                 class="responsive-image">
+
+                            <div class="destination-name">Australia</div>
+                        </a></div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 dest-wrapper">
+                        <div class="destination"><a href=""><img src="{% static "dest-5.jpg" %}"
+                                                                 class="responsive-image">
+
+                            <div class="destination-name">Southeast Asia</div>
+                        </a></div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 dest-wrapper">
+                        <div class="destination"><a href=""><img src="{% static "dest-6.jpg" %}"
+                                                                 class="responsive-image">
+
+                            <div class="destination-name">Puerto Rico</div>
+                        </a></div>
+                    </div>
+
+                    </div>
+                {% else %}
+                    {% for destination in top_dest %}
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 dest-wrapper">
+                            <div class="destination">
+                                <a href="/cruise-destinations/subregion/{{ destination.destination.slug }}/"><img
+                                        src="{% static destination.image %}" class="responsive-image">
+
+                                    <div class="destination-name">{{ destination.title }}</div>
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

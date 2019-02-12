@@ -1,0 +1,8 @@
+django=1.11
+mysqlclient=1.4.1
+django-suit=0.2.26
+django-floppyforms=1.7.0
+django-suit-redactor=0.0.4
+Pillow=5.4.1
+sqlparse=0.2.4
+django-pure-pagination=0.3.0

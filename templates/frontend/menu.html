@@ -1,0 +1,263 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block header %}
+    {{ block.super }}
+
+    {% include "frontend/loginRegister.html" %}
+
+
+
+    <div class="site-header">
+        <div class="container">
+            <div class="main-logo">
+                <a href="/">
+                    <img alt="RedHotCruises" src="{% static "logo.png" %}" class="responsive-image">
+                </a>
+            </div>
+            <div class="main-navigation">
+                <div class="nav-01">
+                    <div class="fancy-text hidden-sm hidden-xs">Your cruise vacation specialists</div>
+                    <ul class="list-inline top-info">
+                        <li class="hidden-xs">
+                            <a href="tel:8442354177" class="header-phone hvr-underline-from-center">
+                                <i class="fa fa-phone"></i> (1) xxx-xxx-xxxx
+                            </a>
+                        </li>
+                        {% comment %}<li class="hidden-xs">
+                  <a href="/about-us" class="top-link hvr-underline-from-center">About Us</a>
+              </li>{% endcomment %}
+                        <li class="hidden-xs">
+                            <a class="top-link hvr-underline-from-center menu_contact">Contact Us</a>
+                        </li>
+                        <li class="header-socials">
+                            <a class="facebook-link"><img alt="facebook image" src="{% static "facebook.png" %}"></a>
+                            <a class="twitter-link"><img alt="twitter image" src="{% static "twitter.png" %}"></a>
+                            <a class="blog-link"><img alt="blog image" src="{% static "blog.png" %}"></a>
+                            <a href="" id="header-suscription" class="suscribe-link">
+                                <img alt="email image" src="{% static "email.png" %}">
+                            </a>
+                        </li>
+                        {% if not request.user.is_authenticated %}
+                        <li class="hidden-xs">
+
+                            <a class="top-link hvr-underline-from-center signUP" data-toggle="modal" data-target="#loginModal">Create Account</a> |
+                            <a class="top-link hvr-underline-from-center login" data-toggle="modal" data-target="#loginModal" > Sign In </a>
+                        </li>
+                        {% else %}
+                        <li class="hidden-xs dropdown">
+                            <a href="#" class="dropdown-toggle"  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                {{ request.user.username }} <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" >
+                                <li class="hvr-underline-from-center" > <a href="/saved-travels">  Saved travels</a></li>
+                                <li class="hvr-underline-from-center"> <a href="/user/logout" > Sign out </a> </li>
+
+                            </ul>
+                        </li>
+                        {% endif %}
+                    </ul>
+                    <div id="header-get" class="get-weekly-deals">
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="form-group text-center">
+                                <label>Get weekly cruise deals</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" required placeholder="enter email address"
+                                       class="form-control input-lg input-mail-address">
+                            </div>
+                            <div class="form-group text-center" id="menu_error_label" style="display: none">
+                                <label style="font-size: 14px!important;">This email already exist!</label>
+                            </div>
+                            <div class="form-group">
+                                <button type="button" id="header-deal-submit" class="btn btn-primary btn-lg btn-block site-btn blue-btn">
+                                    get deals
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="nav-02">
+                    <div id="menu-trigger" class="hidden-lg hidden-md"><i class="fa fa-bars fa-2x"></i></div>
+                    <div class="search-btn"><a href="" class="search-trigger">search <i class="fa fa-search"></i></a>
+                    </div>
+                    <div class="search-box hidden-sm hidden-xs" id="search-desktop">
+                        <form method="get" action="/search/">
+                            <div class="input-group">
+                                <input type="text" placeholder="Search for..." name="q" class="form-control input-lg"><span
+                                    class="input-group-btn">
+                    <button type="submit" class="btn btn-primary site-btn blue-btn"><i class="fa i fa fa-search"></i>
+                    </button></span>
+                            </div>
+                        </form>
+                    </div>
+                    <ul class="list-inline navigation-list">
+                        <li><a href="/cruise-destinations/"
+                               class="nav-link hvr-underline-from-center {% if request.resolver_match.url_name  == 'destinations' %} active {% endif %}">
+                            cruise destinations</a></li>
+                        <li><a href="/cruise-departures/"
+                               class="nav-link hvr-underline-from-center {% if request.resolver_match.url_name  == 'departures' %} active {% endif %}">cruise
+                            departures</a></li>
+                        <li><a href="/cruiselines/"
+                               class="nav-link hvr-underline-from-center {% if request.resolver_match.url_name  == 'cruise_lines' %} active {% endif %}">cruise
+                            lines</a></li>
+                        <li><a href="/cruise-deals/"
+                               class="nav-link hvr-underline-from-center {% if request.resolver_match.url_name  == 'cruise_deals' %} active {% endif %}">cruise
+                            deals</a></li>
+                        <li><a class="nav-link hvr-underline-from-center hidden-lg hidden-md follow_us">Follow Us</a></li>
+                        <li><a class="nav-link hvr-underline-from-center hidden-lg hidden-md menu_contact">Contact Us</a></li>
+                        <li><a href="" class="nav-link hvr-underline-from-center hidden-lg hidden-md search-trigger"><i
+                                class="fa fa-phone"></i> (1) 844-235-4177</a></li>
+                        <li><a href="" class="nav-link hvr-underline-from-center hidden-lg hidden-md search-trigger" id="bt-search-mobile">search <i class="fa fa-search"></i></a></li>
+
+                        {% if not request.user.is_authenticated %}
+                        <li>
+                            <a class="top-link hvr-underline-from-center hidden-lg hidden-md signUP" data-toggle="modal" data-target="#loginModal" >Create Account</a>
+                        </li>
+                        <li>
+                            <a class="nav-link hvr-underline-from-center hidden-lg hidden-md login" data-toggle="modal" data-target="#loginModal"> Sign In </a>
+                        </li>
+                        {% else %}
+                        <li>
+                            <a href="/user/logout" class="nav-link hvr-underline-from-center hidden-lg hidden-md"> Sign Out </a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+
+            </div>
+            <div class="search-box hidden-md hidden-lg" id="search-mobile">
+                <form method="get" action="/search/">
+                    <div class="input-group">
+                        <input type="text" placeholder="Search for..." name="q" class="form-control input-lg"><span
+                            class="input-group-btn">
+                    <button type="submit" class="btn btn-primary site-btn blue-btn"><i class="fa i fa fa-search"></i>
+                    </button></span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    <div class="get-deals hidden-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <form method="post" class="form-horizontal get-deal-form">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="get-deals" class="col-lg-6 col-md-6">Get weekly cruise deals</label>
+
+                            <div class="col-lg-6 col-md-6">
+                                <div class="input-group">
+                                    <input type="email" id="get-deals" placeholder="email address"
+                                           class="form-control input-lg">
+
+                                    <div class="input-group-btn">
+                                        <button type="button" id="deal-submit" class="btn btn-primary btn-lg site-btn hover-transition">
+                                            get deals
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="site-footer" id="contact-us">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 fmenu-wrapper">
+                    <ul class="list-unstyled footer-menu">
+                        <li><a href="/"
+                               class="footer-link hvr-underline-from-center-footer {% if request.resolver_match.url_name  == 'home' %} active {% endif %}">Home</a>
+                        </li>
+                        <li><a href="/cruise-destinations/"
+                               class="footer-link hvr-underline-from-center-footer {% if request.resolver_match.url_name  == 'destinations' %} active {% endif %}">Cruise
+                            Destinations</a></li>
+                        <li><a href="/cruise-departures/"
+                               class="footer-link hvr-underline-from-center-footer {% if request.resolver_match.url_name  == 'departures' %} active {% endif %}">Cruise
+                            Departures</a></li>
+                        <li><a href="/cruiselines/"
+                               class="footer-link hvr-underline-from-center-footer {% if request.resolver_match.url_name  == 'cruise_lines' %} active {% endif %}">Cruise
+                            Lines</a></li>
+                        <li><a href="/cruise-deals/" class="footer-link hvr-underline-from-center-footer"
+                                {% if request.resolver_match.url_name  == 'cruise_deals' %} active {% endif %}>Cruise
+                            Deals</a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 fsocial-wrapper">
+                    <ul class="list-unstyled footer-socials" id="footer-socials">
+                        <li>
+                            <a style="cursor:pointer;" class="footer-link hvr-underline-from-center-footer">Follow Us</a>
+                        </li>
+                        <li>
+                            <a class="social-link hover-transition facebook-link">
+                                <img alt="facebook image" src="{% static "facebook.png" %}"> Become a fan</a>
+                        </li>
+                        <li>
+                            <a class="social-link hover-transition twitter-link">
+                                <img alt="twitter image" src="{% static "twitter.png" %}"> Follow @redhotcruise</a>
+                        </li>
+                        <li>
+                            <a class="social-link hover-transition blog-link">
+                                <img alt="blog image" src="{% static "blog.png" %}"> Blog RedHot Cruise?</a>
+                        </li>
+                        <li><a href="" id="footer-suscription" class="social-link hover-transition suscribe-link">
+                            <img alt="email image" src="{% static "email.png" %}"> Subscribe for weekly cruise deals</a>
+                        </li>
+                    </ul>
+                    <div id="footer-get" class="get-weekly-deals">
+                        <form method="post">
+                            <div class="form-group text-center">
+                                <label>Get weekly cruise deals</label>
+                            </div>
+                            <div class="form-group text-center" id="menu_error_label_bottom" style="display: none">
+                                <label style="font-size: 14px!important;">This email already exist!</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" placeholder="enter mail address" class="form-control input-lg input-mail-address">
+                            </div>
+                            <div class="form-group">
+                                <button type="button" id="footer-deal-submit" class="btn btn-primary btn-lg btn-block site-btn blue-btn">
+                                    get deals
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                    <form method="post" class="footer-form" action="/send_email/">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Name" class="form-control input-lg footer-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" required name="email" placeholder="Email Address"
+                                   class="form-control input-lg footer-control">
+                        </div>
+                        <div class="form-group">
+                            <textarea name="comment" rows="5" placeholder="Make a comment..."
+                                      class="form-control input-lg footer-control"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success btn-lg site-btn dark-btn hover-transition">
+                                contact us
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bottom-info text-center">
+        <a href="" class="hvr-underline-from-center-footer">Best Cruise ever</a> © 2019. FST: xxxxxx | CST: xxxxxxxxx |
+        NST: xxxx-xxx
+    </div>
+
+{% endblock %}

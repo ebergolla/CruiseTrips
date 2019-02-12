@@ -1,0 +1,215 @@
+.loading_image {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 )
+                url('/static/large-loading.gif')
+                50% 50%
+                no-repeat;
+}
+
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+body.loading {
+    overflow: hidden;
+}
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+body.loading .loading_image {
+    display: block;
+}
+
+a {
+    cursor: pointer;
+}
+
+.port-list > li {
+    line-height: 1.2 !important;
+}
+
+.lowest-price {
+    background: none repeat scroll 0 0 #dfdfd0;
+    border-radius: 5px;
+}
+
+.blue-section
+{
+    border-bottom: 0px !important;
+}
+.cruise-details-container{
+    background-color: #fff;
+    padding-top: 10px;
+}
+
+.section-ships{
+    margin: 5px 0 5px 0;
+    text-align: center;
+}
+
+.section-ships span{
+    color: #9dacc5;
+    font-family: Miriam,sans-serif;
+    font-size: 16px;
+    letter-spacing: 1px;
+    line-height: 40px;
+    margin: 5px auto 5px auto;
+}
+
+.section-ships img{
+    margin: 5px auto 5px auto;
+}
+
+.destination-port-list{
+    list-style: none;
+}
+.destination-port-list a{
+    color: #173f8a;
+}
+/*.destination-port-list > div:nth-child(n) {background: #FFF}*/
+.destination-port-list > div:nth-child(n)
+{
+    background: #f0f4fd
+}
+
+.panel-body div.section-ships:nth-child(even){
+    background: #f0f4fd
+}
+.panel-body div.section-ships:nth-child(odd){
+    background: #FFF
+}
+
+.panel:nth-child(even){
+    background: #f0f4fd
+}
+
+.panel a{
+  color: #173f8a;
+}
+
+#accordion{
+    padding-right: 0;
+    padding-left: 0;
+    float: left;
+}
+#accordion > div{
+    padding-right: 0;
+    padding-left: 0;
+    border-radius: 0;
+}
+#accordion div.panel{
+    border-radius: 0;
+    padding-right: 0;
+    padding-left: 0;
+}
+#accordion .panel + .panel{
+    margin-top: 0;
+}
+#accordion div.panel-body{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#accordion div.panel-body div.section-ships{
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0 0 0 0;
+}
+
+.panel-collapse{
+    background-color: #269abc;
+    max-height: 300px;
+    overflow-y: auto;
+    position: absolute;
+    z-index: 99;
+    width: calc(100%);
+}
+
+.sort-offers .filter {
+  position: relative;
+  float: left;
+  width: 16.6%;
+  padding: 0 5px;
+}
+@media screen and (max-width: 640px) {
+  .sort-offers .filter {
+    width: 50%;
+    margin-bottom: 10px;
+  }
+  .sort-offers .filter:last-child {
+    width: 50%;
+  }
+}
+
+#price-sort ul.dropdown-menu{
+    margin-left: 5px;
+    background: none repeat scroll 0 0 #173f8a;
+    border-color: #fff;
+    border-radius: 0px;
+    color: #9dacc5;
+}
+
+#price-sort li > a{
+    color: #9dacc5;
+}
+
+#price-sort li > a:hover{
+    background: transparent -webkit-linear-gradient(#2b69dc 20%, #1e53b6 90%);
+    background: transparent linear-gradient(#2b69dc 20%, #1e53b6 90%);
+    color: #fff;
+}
+
+.sort-offers label a{
+    color: #9dacc5;
+    font-family: Miriam,sans-serif;
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.blue-section {
+    background-color: #133574;
+    border-bottom: 2px solid #fff;
+    float: left;
+    padding: 15px 0 60px;
+    position: relative;
+    width: 100%;
+}
+
+.sails {
+    margin-top: 10px;
+}
+
+.search-box#search-mobile {
+  margin-right: 5%;
+  margin-left: 5%;
+}
+
+.destination-item{
+    padding: 10px 15px;
+}
+
+.destination-item:nth-child(2n){
+    background: #f0f4fd
+}
+
+.destination-list{
+    padding: 0;
+}
+.destination-list > div{
+    padding: 0;
+}
+
+#search-mobile-bottom{
+    display: inline;
+}
+
+.search-box-bottom {
+    padding: 10px 10%;
+    background-color: rgba(0, 0, 0, 0.6);
+    float: left;
+
+}

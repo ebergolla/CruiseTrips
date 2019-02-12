@@ -1,0 +1,60 @@
+<form method="get" class="filter-form" action="/search/">{% comment %}{% csrf_token %}{% endcomment %}
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group">
+        <div class="chosen-container-single chosen-single">
+        <input id="datepicker" name="date" {% if date != None %} value="{{ date }}" {% else  %} value = "{% now "m/Y" %}" {% endif %} class="form-control chosen-container-single chosen-single" placeholder="Any Date">
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group">
+        <select data-placeholder="Length" name="length" class="form-control chosen-select">
+            <!-- This blank option tag is necessary for display the placeholder text-->
+            <option value="0">Any Length</option>
+            {% for fl in filter_length %}
+            <option value="{{ fl.length_value }}" {% if fl.selected %}selected="selected"{% endif %}>{{ fl.length_value }} Night(s)</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group">
+        <select data-placeholder="Destination" name="destination" id="filter-destination" class="form-control chosen-select">
+            <!-- This blank option tag is necessary for display the placeholder text-->
+            <option value="0">Any Destination</option>
+            {% for sr in subregions %}
+            <option value="{{ sr.name }}" {% if sr.selected %}selected="selected"{% endif %}>{{ sr.name }}</option>
+            {% endfor %}
+
+        </select>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group">
+        <select data-placeholder="Cruise Line" name="cruiseLine" id="cruise-line-filter" class="form-control chosen-select">
+            <!-- This blank option tag is necessary for display the placeholder text-->
+            <option value="0">Any Cruise Line</option>
+            {% for cl in cruises_lines %}
+                <option value="{{ cl.name }}" cruiseid="{{ cl.id }}" {% if cl.selected %}selected="selected"{% endif %}>{{ cl.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group">
+        <select data-placeholder="Ship"  name="ship" id="ship-filter" class="form-control chosen-select">
+            <!-- This blank option tag is necessary for display the placeholder text-->
+            <option value="0">Any Ship</option>
+
+            {% for s in ships %}
+                <option value="{{ s.name }}" {% if s.selected %}selected="selected"{% endif %}>{{ s.name }}</option>
+            {% endfor %}
+
+        </select>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group">
+        <select data-placeholder="Departure" name="departure" id="filter-departure" class="form-control chosen-select">
+            <!-- This blank option tag is necessary for display the placeholder text-->
+            <option value="0">Any Departure</option>
+            {% for dp in departure_port %}
+                <option value="{{ dp.slug }}" {% if dp.selected %}selected="selected"{% endif %}>{{ dp.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group">
+        <button type="submit" class="btn btn-danger btn-block btn-lg site-btn red-btn hover-transition search-button">
+            search your cruise
+        </button>
+    </div>
+</form>

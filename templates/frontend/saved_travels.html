@@ -1,0 +1,184 @@
+{% extends 'frontend/menu.html' %}
+{% load staticfiles %}
+{% load filters_tag %}
+
+{% block title %}
+    <title>{{ title }}</title>
+{% endblock %}
+
+{% block meta %}
+    {{ block.super }}
+    {{ metadata|safe }}
+{% endblock %}
+
+{% block content %}
+    <div class="main-section">
+        <div id="main-carousel">
+            {% main_banner %}
+        </div>
+        <div class="filters-widget hidden-sm hidden-xs">
+            {% filters %}
+        </div>
+
+    </div>
+    <div class="blue-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    {% if not travels|length_is:'0' %}
+                        {% sort_by request %}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 sails">
+                    {% for t in travels %}
+                        <div class="sail-offer" id="travel_row_id{{t.id  }}">
+                            <div class="details details-info">
+                                <h2 class="sail-title">
+                            <span>
+                                {{ t.name }}
+                            </span>
+                                </h2>
+
+                                <div class="logo">
+                                    <img alt="{{ t.cruise_line.name }}" src="{{ t.cruise_line.logo }}" class="img-responsive">
+
+                                </div>
+                                <div class="ship">
+                                    <strong> Cruises Line:</strong>
+                                    <a href="/cruiselines/{{ t.cruise_line.slug }}/">
+                                        {{ t.cruise_line.name }}
+                                    </a>
+                                </div>
+                                <div class="ship">
+                                    <strong>Ship:</strong>
+                                    <a href="/cruiselines/{{ t.cruise_line.slug }}/ship/{{ t.ship.slug }}/">{{ t.ship.name }}</a>
+                                </div>
+                                <div class="small-image">
+                                    <img alt="{{ t.ship.name }}" src="{{ t.ship.big_logo_src }}" class="img-responsive"></div>
+
+                            </div>
+                            <div class="details details-prices">
+                                <div class="table-responsive hidden-xs">
+                                    <div class="subtitle">Pricing From:</div>
+                                    <table class="table price-table">
+                                        <thead>
+                                        <tr>
+                                            <th>Inside</th>
+                                            <th>Oceanview</th>
+                                            <th>Balcony</th>
+                                            <th>Suite</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>{{ t.inside | floatformat:"0" | price }}</td>
+                                            <td>{{ t.oceanview | floatformat:"0" | price }}</td>
+                                            <td>{{ t.balcony | floatformat:"0" | price }}</td>
+                                            <td>{{ t.suite | floatformat:"0" | price }}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="table-responsive visible-xs">
+                                    <div class="subtitle">Pricing From:</div>
+                                    <table class="table price-table price-table-mobile">
+                                        <thead>
+                                        <tr>
+                                            <th>Inside</th>
+                                            <th>Ocean</th>
+                                            <th>Balcony</th>
+                                            <th>Suite</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>{{ t.inside | floatformat:"0" | pricemobile }}</td>
+                                            <td>{{ t.oceanview | floatformat:"0" | pricemobile }}</td>
+                                            <td>{{ t.balcony | floatformat:"0" | pricemobile }}</td>
+                                            <td>{{ t.suite | floatformat:"0" | pricemobile }}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="gateways">
+                                    <p><strong>Departing date:</strong></p>
+                                    <ul class="list-inline port-list">
+                                         <li>{{ t.depart_date }}</li>
+                                    </ul>
+                                </div>
+
+                                <div class="gateways">
+                                    <p><strong>Departing from:</strong></p>
+                                    <ul class="list-inline port-list">
+                                         <li>{{ t.departing_from }}</li>
+                                    </ul>
+                                </div>
+
+                                <div class="gateways">
+                                    <p><strong>Ports of Call:</strong></p>
+                                    <ul class="list-inline port-list">
+                                        {% for p in t.ports %}
+                                            <li>{{ p.name }}</li>
+                                            {% comment %}{% if not forloop.last %}
+                                                -
+                                            {% endif %}{% endcomment %}
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+
+
+                                <div class="view-next text-right">
+                                        <a href="javascript:void(0)" travel_id="{{ t.id }}" delete_row="1"
+                                       role="button"
+                                       class="btn btn-primary btn-lg site-btn blue-btn hover-transition saved toggle-save-travel" >
+
+                                        <i class="fa fa-heart" style="color: yellow" aria-hidden="true"></i>
+
+                                            Unsave this travel
+
+
+                                        </a>
+
+                                </div>
+
+                            </div>
+                            <div class="prices-form-wrapper">
+
+                            </div>
+                        </div>
+                    {% empty %}
+                        <h3 style="color: #fff!important;">No saved travels yet.</h3>
+                    {% endfor %}
+
+                    {% if pager.paginator.num_pages > 1 %}
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <p class="pagination-label">{{ pager }}</p>
+                            {{ pager.render }}
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="hidden-lg hidden-md">
+                <div class="row">
+                    <div class="col-xs-1 col-sm-3"></div>
+                    <div class="col-xs-10 col-sm-6">
+                        {% filters %}
+                    </div>
+                    <div class="col-xs-1 col-sm-3"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block js %}
+    {{ block.super }}
+        <script src="{% static "search_result.js" %}"></script>
+{% endblock %}

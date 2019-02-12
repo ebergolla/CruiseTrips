@@ -1,0 +1,104 @@
+{% extends 'frontend/menu.html' %}
+{% load staticfiles %}
+{% load filters_tag %}
+
+{% block title %}
+    <title>Cruise Deals at Red Hot Cruises</title>
+{% endblock %}
+
+{% block meta %}
+    {{ block.super }}
+
+{% endblock %}
+
+{% block content %}
+    <div class="main-section">
+        <div id="main-carousel">
+            {% main_banner %}
+        </div>
+         <div class="hidden-sm hidden-xs">
+            {% filters %}
+        </div>
+        <div class="banner-text">
+            <h1 class="title">Cruise Deals</h1>
+
+            <div class="description">
+                <p>
+                    Red Hot Cruises gives you the latest cruise deals directly from the top cruise lines around the
+                    world. We compile all cruise promotions and specials as soon as they are announced to get you the
+                    best prices and hottest deals when booking your cruise. Check below for a list of the latest cruise
+                    deals available now.
+                </p>
+                <p>
+                    Interested in group rates?
+                    Contact us about our special group discounts as well as earning free travel based on the size of
+                    your group!
+                </p>
+
+            </div>
+        </div>
+        <div class="filters-widget hidden-lg hidden-md">
+            <div class="row">
+                <div class="col-xs-1 col-sm-3"></div>
+                <div class="col-xs-10 col-sm-6">
+                    {% filters %}
+                </div>
+                <div class="col-xs-1 col-sm-3"></div>
+            </div>
+        </div>
+    </div>
+    <div class="blue-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="section-deal-title text-center">
+                        <h2 class="fancy-title gray-title">
+                            <img src="{% static "Lgraywave.png" %}">Cruise Deals
+                            <img src="{% static "Rgraywave.png" %}">
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 sails">
+                    {% for deal in cruises_deals %}
+                        <div class="sail-offer">
+                        <div class="details details-info">
+                            <div class="pic">
+                                <div class="deal-title">{{ deal.title }}</div>
+                                <div class="logo-deals">
+                                    <img src="{{ base_image_url }}{{ deal.cruise_line.logo }}" class="img-responsive"></div>
+                            </div>
+                        </div>
+                        <div class="details">
+                            <div class="description">
+                                {{ deal.description|safe }}
+                            </div>
+                            <div class="expire" style="margin-top: 20px">
+                                Offer Expire: {{ deal.expire_date }}
+                            </div>
+                            <div class="view-next text-right">
+                                <a href="{{ deal.url }}/" role="button"
+                                   class="btn btn-primary btn-lg site-btn blue-btn hover-transition">
+                                    View Availability
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+            {% if deals_page.paginator.num_pages > 1 %}
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <p class="pagination-label">{{ deals_page }}</p>
+                    {{ deals_page.render }}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% load i18n %}
+<ul class="pagination pagination-large">
+    {% if page_obj.has_previous %}
+        <li>
+            <span aria-labelledby="Previous">
+                <a href="?{{ page_obj.previous_page_number.querystring }}">
+                    <i class="fa fa-play fa-flip-horizontal"></i>
+                </a>
+            </span>
+        </li>
+    {% else %}
+        <li class="disabled">
+            <span aria-labelledby="Previous">
+                <i class="fa fa-play fa-flip-horizontal"></i>
+            </span>
+        </li>
+    {% endif %}
+    {% for page in page_obj.pages %}
+        {% if page %}
+            {% ifequal page page_obj.number %}
+                 <li class="active">
+                    <span>{{ page }}
+                        <span class="sr-only">(current)</span>
+                    </span>
+                </li>
+            {% else %}
+                <li>
+                    <a href="?{{ page.querystring }}">{{ page }}</a>
+                </li>
+{#                <a href="?{{ page.querystring }}" class="page">{{ page }}</a>#}
+            {% endifequal %}
+        {% else %}
+            <li class="disabled"><span aria-hidden="true">&hellip;</span></li>
+        {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+        <li >
+            <a href="?{{ page_obj.next_page_number.querystring }}">
+                <i class="fa fa-play"></i>
+            </a>
+        </li>
+    {% else %}
+        <li class="disabled">
+            <a href="">
+                <i class="fa fa-play"></i>
+            </a>
+        </li>
+    {% endif %}
+</ul>
+

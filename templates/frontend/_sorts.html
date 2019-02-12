@@ -1,0 +1,85 @@
+<form method="post" class="sort-offers">
+    <div class="form-group" id="sort-by-link">
+        <label data-toggle="collapse" data-target="#filters-fields-{{ type }}">
+            <a>
+                Sort by:
+            </a>
+        </label>
+    </div>
+    <div class="form-group sort-filters collapse" id="filters-fields-{{ type }}">
+
+        <div class="filter chosen-container{% if direction == 'asc' %}-active chosen-with-drop{% endif %} chosen-container-single chosen-container-single-nosearch"
+             style="" title="">
+            <a href="?{{ date_url}}" class="chosen-single chosen-default">
+                <span> Date Range</span>
+                {% if sort == 'date' %}
+                <div><b></b></div>
+                {% endif %}
+            </a>
+        </div>
+
+
+        <div id="price-sort" class="dropdown filter chosen-container{% if direction == 'asc' %}-active chosen-with-drop{% endif %} chosen-container-single chosen-container-single-nosearch">
+            <a href="#" class="dropdown-toggle chosen-single chosen-default" data-toggle="dropdown">
+                Price
+                {% if sort == 'price.inside' or sort == 'price.oceanview' or sort == 'price.balcony' or sort == 'price.suite' %}
+                <div><b></b></div>
+                {%  endif %}
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="?{{ price_inside_url }}">Inside</a></li>
+                <li><a href="?{{ price_oceanview_url }}">Ocean view</a></li>
+                <li><a href="?{{ price_balcony_url }}">Balcony</a></li>
+                <li><a href="?{{ price_suite_url }}">Suite</a></li>
+            </ul>
+        </div>
+        {% comment %}<select data-placeholder="Price" id="sort-price" name="date" class="filter chosen-select-sort">
+            <option value="0">Price</option>
+            <option value="inside">Inside</option>
+            <option value="oceanview">Ocean view</option>
+            <option value="balcony">Balcony</option>
+            <option value="suite">Suite</option>
+        </select>{% endcomment %}
+
+        <div class="filter chosen-container{% if direction == 'asc' %}-active chosen-with-drop{% endif %} chosen-container-single chosen-container-single-nosearch"
+             style="" title="">
+            <a href="?{{ cruiseLine_url }}" class="chosen-single chosen-default">
+                <span>Cruise Line</span>
+                {% if sort == 'cruiseLine' %}
+                <div><b></b></div>
+                {%  endif %}
+            </a>
+        </div>
+
+        <div class="filter chosen-container{% if direction == 'asc' %}-active chosen-with-drop{% endif %} chosen-container-single chosen-container-single-nosearch"
+             style="" title="">
+            <a href="?{{ length_url }}" class="chosen-single chosen-default">
+                <span>Length</span>
+                {% if sort == 'length' %}
+                <div><b></b></div>
+                {%  endif %}
+            </a>
+        </div>
+
+        <div class="filter chosen-container{% if direction == 'asc' %}-active chosen-with-drop{% endif %} chosen-container-single chosen-container-single-nosearch"
+             style="" title="">
+            <a href="?{{ ship_url }}" class="chosen-single chosen-default">
+                <span>Ship</span>
+                {% if sort == 'ship' %}
+                <div><b></b></div>
+                {%  endif %}
+            </a>
+        </div>
+
+        <div class="filter chosen-container{% if direction == 'asc' %}-active chosen-with-drop{% endif %} chosen-container-single chosen-container-single-nosearch"
+             style="" title="">
+            <a href="?{{ departure_url }}" class="chosen-single chosen-default">
+                <span>Departure</span>
+                {% if sort == 'departure' %}
+                <div><b></b></div>
+                {%  endif %}
+            </a>
+        </div>
+
+    </div>
+</form>

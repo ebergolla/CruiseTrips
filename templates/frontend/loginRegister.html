@@ -1,0 +1,140 @@
+<!--Modal: Login / Register Form-->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content register-form">
+
+            <ul class="nav nav-tabs" role="tablist" id="tablistUser">
+                <li class="nav-item col-xs-6 col-md-6 col-lg-6">
+                    <a class="nav-link active" data-toggle="tab" href="#panel1" role="tab"><i
+                            class="fa fa-user"></i>
+                        Login</a>
+                </li>
+                <li class="nav-item col-xs-6 col-md-6 col-lg-6">
+                    <a class="nav-link" data-toggle="tab" href="#panel2" role="tab"><i
+                            class="fa fa-user-plus"></i>
+                        Register</a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <!--Panel 7-->
+                <div class="tab-pane fade in active" id="panel1" role="tabpanel">
+
+                    <!--Body-->
+                    <div class="modal-body">
+                        <div id="loginerror" class="alert alert-danger" style="display: none" role="alert">
+
+                        </div>
+
+                        <div class="row row-container">
+                            <div class="col-lg-12 col-xs-12 input-container">
+                                <div class="col-lg-1 col-xs-2 divfa">
+                                    <i class="fa fa-2x fa-envelope prefix" style="width: 100%; height: 100%"></i>
+                                </div>
+                                <div class="col-lg-11 col-xs-10 divinput">
+                                    <input type="email" id="username" class="form-control validate login-input chosen-container-single chosen-single " placeholder="Your email">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row row-container">
+                            <div class="col-lg-12 col-xs-12 input-container">
+                                <div class="col-lg-1 col-xs-2 divfa">
+                                    <i class="fa fa-2x fa-lock prefix"></i>
+                                </div>
+                                <div class="col-lg-11 col-xs-10 divinput">
+                                    <input type="password" id="password"
+                                           class="form-control validate login-input" placeholder="Password">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center mt-2">
+                            <button class="btn btn-danger btn-block btn-lg site-btn red-btn hover-transition login" id="login">Log in <i class="fa fa-sign-in ml-1"></i></button>
+                        </div>
+                    </div>
+                    <!--Footer-->
+                    <div class="modal-footer">
+                        <div class="options text-center text-md-right mt-1">
+                            <p>Not a member? <a href="#" class="blue-text signUP" id="signUP">Sign Up</a></p>
+
+                            <p>Forgot <a href="#" class="blue-text">Password?</a></p>
+                        </div>
+                        <button type="button" class="btn btn-success btn-lg site-btn dark-btn hover-transition"
+                                data-dismiss="modal">Close
+                        </button>
+                    </div>
+
+                </div>
+                <!--/.Panel 7-->
+
+                <!--Panel 8-->
+                <div class="tab-pane fade" id="panel2" role="tabpanel">
+
+                    <!--Body-->
+                    <div class="modal-body">
+                        <div id="signUPerror" class="alert alert-danger" style="display: none" role="alert">
+
+                        </div>
+
+                        <div class="row row-container">
+                            <div class="col-lg-12 col-xs-12 input-container">
+                                <div class="col-lg-1 col-xs-2 divfa">
+                                    <i class="fa fa-2x fa-envelope prefix"></i>
+                                </div>
+                                <div class="col-lg-11 col-xs-10 divinput">
+                                    <input type="email" id="email" required placeholder="Email" class="form-control login-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row row-container">
+                            <div class="col-lg-12 col-xs-12 input-container">
+                                <div class="col-lg-1 col-xs-2 divfa">
+                                    <i class="fa fa-2x fa-lock prefix"></i>
+                                </div>
+                                <div class="col-lg-11 col-xs-10 divinput">
+                                <input type="password" required id="cpassword"
+                                       class="form-control login-input" placeholder="Password">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row row-container">
+                            <div class="col-lg-12 col-xs-12 input-container">
+                                <div class="col-lg-1 col-xs-2 divfa">
+                                    <i class="fa fa-2x fa-lock prefix"></i>
+                                </div>
+                                <div class="col-lg-11 col-xs-10 divinput">
+                                <input type="password" required id="crpassword"
+                                       class="form-control login-input" placeholder="Repate password">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center form-sm mt-2">
+                            <button id="createUserButton" class="btn btn-danger btn-block btn-lg site-btn red-btn hover-transition signUP">
+                                Sign up
+                                <i class="fa fa-sign-in ml-1">
+
+                                </i></button>
+
+                        </div>
+
+                    </div>
+                    <!--Footer-->
+                    <div class="modal-footer">
+                        <div class="options text-right">
+                            <p class="pt-1">Already have an account? <a href="#" class="blue-text login">Log In</a></p>
+                        </div>
+                        <button type="button" class="btn btn-success btn-lg site-btn dark-btn hover-transition"
+                                data-dismiss="modal">Close
+                        </button>
+                    </div>
+                </div>
+                <!--/.Panel 8-->
+            </div>
+        </div>
+    </div>
+</div>

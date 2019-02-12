@@ -1,0 +1,182 @@
+{% extends 'frontend/menu.html' %}
+{% load staticfiles %}
+{% load filters_tag %}
+
+{% block title %}
+    <title>Cruise Destinations - Red Hot Cruises</title>
+{% endblock %}
+
+{% block meta %}
+    {{ block.super }}
+
+{% endblock %}
+
+{% block content %}
+    <div class="main-section">
+        <div id="main-carousel">
+            {% main_banner %}
+        </div>
+        <div class="hidden-sm hidden-xs">
+            {% filters %}
+        </div>
+        <div class="banner-text">
+            <h1 class="title">Cruise Destinations</h1>
+
+            <div class="description">
+                <p>
+                    Red Hot Cruises is a leading seller of cruises visiting thousands of destinations around the world.
+                    Whether you’re looking for a scenic cruise to Alaska, a historic cruise through the European Rivers,
+                    or a relaxing cruise to the Bahamas, we have the right cruise for you. Check below for a complete
+                    list of popular cruise destinations as well as a list of individual cities and ports sorted by
+                    country.
+                </p>
+
+            </div>
+        </div>
+        <div class="filters-widget hidden-lg hidden-md">
+            <div class="row">
+                <div class="col-xs-1 col-sm-3"></div>
+                <div class="col-xs-10 col-sm-6">
+                    {% filters %}
+                </div>
+                <div class="col-xs-1 col-sm-3"></div>
+            </div>
+        </div>
+    </div>
+    <div class="blue-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="section-title text-center">
+                        <h2 class="fancy-title gray-title">
+                            <img src="{% static "Lgraywave.png" %}">Regions & Subregions<img
+                                src="{% static "Rgraywave.png" %}"></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 destination-list">
+                        {% for s_list in subregions %}
+                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                            {% for s in s_list %}
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 destination-item">
+                                    <span>
+                                        <a href="/cruise-destinations/subregion/{{ s.slug }}/" class="dest-link">{{ s.name }}</a>
+                                   </span>
+                                </div>
+                            {% endfor %}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="container" >
+            <div class="row" >
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="section-title text-center">
+                        <h2 class="fancy-title gray-title">
+                            <img src="{% static "Lgraywave.png" %}">
+                                Countries and Ports
+                            <img src="{% static "Rgraywave.png" %}">
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        {% if destination_ports|length > 0 %}
+            <div class="row cruise-details-container">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 destination-port-list">
+                    {% for dp in destination_ports %}
+                        {% if departures|length == 1 %}
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 section-ships">
+                        {% elif departures|length == 2 %}
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 section-ships">
+                        {% else %}
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 section-ships">
+                        {% endif %}
+                            <span><a href="/cruise-destinations/port/{{ dp.slug }}/">{{ dp.name }}</a></span>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+            {% endif %}
+        <div class="container">
+            <div class="row">
+                <div class="panel-group col-xs-12 col-sm-12 col-md-12 col-lg-12" id="accordion">
+
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+
+                        {% for cp in port_data_1 %}
+                        <div class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="panel-heading">
+                              <h3 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#{{ cp.country_slug }}">
+                                  {{ cp.country_name }}
+                                </a>
+                              </h3>
+                            </div>
+                            <div id="{{ cp.country_slug }}" class="panel-collapse collapse">
+                              <div class="panel-body">
+                                  {% for p in cp.ports %}
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 section-ships">
+                                            <span><a href="/cruise-destinations/port/{{ p.slug }}/">{{ p.name }}</a></span>
+                                        </div>
+                                  {% endfor %}
+                              </div>
+                            </div>
+                          </div>
+                        {% endfor %}
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+
+                        {% for cp in port_data_2 %}
+                        <div class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="panel-heading">
+                              <h3 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#{{ cp.country_slug }}">
+                                  {{ cp.country_name }}
+                                </a>
+                              </h3>
+                            </div>
+                            <div id="{{ cp.country_slug }}" class="panel-collapse collapse">
+                              <div class="panel-body">
+                                  {% for p in cp.ports %}
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 section-ships">
+                                            <span><a href="/cruise-destinations/port/{{ p.slug }}/">{{ p.name }}</a></span>
+                                        </div>
+                                  {% endfor %}
+                              </div>
+                            </div>
+                          </div>
+                        {% endfor %}
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+
+                        {% for cp in port_data_3 %}
+                        <div class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="panel-heading">
+                              <h3 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#{{ cp.country_slug }}">
+                                  {{ cp.country_name }}
+                                </a>
+                              </h3>
+                            </div>
+                            <div id="{{ cp.country_slug }}" class="panel-collapse collapse">
+                              <div class="panel-body">
+                                  {% for p in cp.ports %}
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 section-ships">
+                                            <span><a href="/cruise-destinations/port/{{ p.slug }}/">{{ p.name }}</a></span>
+                                        </div>
+                                  {% endfor %}
+                              </div>
+                            </div>
+                          </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% load static %}
+
+{% if banners|length == 0 %}
+    <div class="main-banner bg-image"><img alt="image 1" src="{% static "slide1.jpg" %}" class="responsive-image to-bg">
+    </div>
+    <div class="main-banner bg-image"><img alt="image 2" src="{% static "slide2.jpg" %}" class="responsive-image to-bg">
+    </div>
+    <div class="main-banner bg-image"><img alt="image 3" src="{% static "slide3.jpg" %}" class="responsive-image to-bg">
+    </div>
+    <div class="main-banner bg-image"><img alt="image 4" src="{% static "slide4.jpg" %}" class="responsive-image to-bg">
+    </div>
+    <div class="main-banner bg-image"><img alt="image 5" src="{% static "slide5.jpg" %}" class="responsive-image to-bg">
+    </div>
+    <div class="main-banner bg-image"><img alt="image 6" src="{% static "slide6.jpg" %}" class="responsive-image to-bg">
+    </div>
+{% else %}
+    {% for banner in banners %}
+        <div class="main-banner bg-image"><img alt="{{ banner.title }}" src="{{ banner.image.url }}" class="responsive-image to-bg">
+        </div>
+    {% endfor %}
+{% endif %}

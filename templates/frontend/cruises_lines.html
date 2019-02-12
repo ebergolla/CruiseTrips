@@ -1,0 +1,76 @@
+{% extends 'frontend/menu.html' %}
+{% load staticfiles %}
+{% load filters_tag %}
+
+{% block title %}
+    <title>Cruise Lines - Red Hot Cruises</title>
+{% endblock %}
+
+{% block meta %}
+    {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <div class="main-section">
+        <div id="main-carousel">
+            {% main_banner %}
+        </div>
+        <div class="hidden-sm hidden-xs">
+            {% filters %}
+        </div>
+        <div class="banner-text">
+            <h1 class="title">Cruise Lines</h1>
+
+            <div class="description">
+                <p>
+                    Here at Red Hot Cruises, we work directly with the cruise lines to provide the lowest prices and
+                    best deals on thousands of cruises worldwide. Embark on a historic river cruise with AmaWaterways,
+                    Avalon, and Viking Cruises. Experience the five-star service of luxury cruise lines like Crystal,
+                    Seabourn and Silversea. Set sail aboard conventional cruise lines like Carnival, Disney, MSC,
+                    Norwegian, and Royal Caribbean. See a list of all available cruise lines below.
+                </p>
+
+            </div>
+        </div>
+        <div class="filters-widget hidden-lg hidden-md">
+            <div class="row">
+                <div class="col-xs-1 col-sm-3"></div>
+                <div class="col-xs-10 col-sm-6">
+                    {% filters %}
+                </div>
+                <div class="col-xs-1 col-sm-3"></div>
+            </div>
+        </div>
+    </div>
+    <div class="blue-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="section-title text-center">
+                        <h2 class="fancy-title gray-title">
+                            <img src="{% static "Lgraywave.png" %}">Cruise Lines
+                            <img src="{% static "Rgraywave.png" %}">
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 destination-list">
+                        {% for cl_list in cruise_lines %}
+                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                            {% for cl in cl_list %}
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 destination-item">
+                                    <span>
+                                        <a href="/cruiselines/{{ cl.slug }}/" class="dest-link">
+                                            {{ cl.name }}
+                                        </a>
+                                   </span>
+                                </div>
+                            {% endfor %}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
